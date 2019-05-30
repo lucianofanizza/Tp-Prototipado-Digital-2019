@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Escenas/Demon Front.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Escenas/plataforma.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 317.938, 33.33 )
@@ -52,7 +51,13 @@ texture = ExtResource( 2 )
 scale = Vector2( 1.1, 1 )
 shape = SubResource( 1 )
 
-[node name="plataforma" parent="." instance=ExtResource( 3 )]
-position = Vector2( 31.6541, 425.07 )
+[node name="Label" type="Label" parent="."]
+margin_left = 212.0
+margin_top = 190.0
+margin_right = 439.0
+margin_bottom = 397.0
+text = "Movimiento = w,s,a,d
 
-[connection signal="body_exited" from="plataforma" to="plataforma" method="_on_plataforma_body_exited"]
+Disparar = j
+
+Saltar = k"

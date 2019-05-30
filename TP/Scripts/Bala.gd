@@ -1,8 +1,8 @@
 extends KinematicBody2D
-var pos
 
-func _ready():
-	pos = global_position
+var dir = 0
+var speed = 500
 
 func _process(delta):
-	global_position = (Vector2(20, 0))
+	var move = move_and_collide(Vector2(0,dir*speed*delta))
+	pass
