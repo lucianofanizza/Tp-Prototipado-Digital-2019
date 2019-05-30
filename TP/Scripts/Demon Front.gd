@@ -1,7 +1,7 @@
 extends KinematicBody2D
 var velocity = Vector2()
 var vector_normal = Vector2(0,-1)
-var bala = load("res://Escenas/Bala.tscn")
+var bala = preload("res://Escenas/Bala.tscn")
 
 func get_input():
 	if(Input.is_action_pressed("ui_right")):
@@ -10,8 +10,6 @@ func get_input():
 	if(Input.is_action_pressed("ui_left")):
 		velocity.x = -450
 		$Position2D.position.x = -45
-	if(Input.is_action_pressed("ui_up")):
-		$Position2D.position.y = -45
 	if(Input.is_action_just_released("ui_right")):
 		velocity.x = 0
 	if(Input.is_action_just_released("ui_left")):
@@ -23,8 +21,6 @@ func disparar():
 	var newbala = bala.instance()
 	get_parent().add_child(newbala)
 	newbala.global_position = $Position2D.global_position
-	newbala.dir = 0
-	
 
 func _physics_process(delta):
 	get_input()
