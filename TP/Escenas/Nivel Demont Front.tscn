@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Escenas/Demon Front.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Escenas/plataforma.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 317.938, 33.33 )
+
+[node name="Nivel Demon Front" type="Node"]
+
+[node name="Demon Front" parent="." instance=ExtResource( 1 )]
+position = Vector2( 324.975, 485.609 )
+scale = Vector2( 0.979999, 1.5 )
+
+[node name="Camera2D" type="Camera2D" parent="Demon Front"]
+current = true
+limit_left = 0
+limit_top = -50
+limit_bottom = 600
+drag_margin_left = 0.7
+drag_margin_top = 0.9
+drag_margin_right = 0.01
+editor_draw_drag_margin = true
+
+[node name="piso" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1458.36, 572.197 )
+scale = Vector2( 4.2, 1 )
+
+[node name="Sprite" type="Sprite" parent="piso"]
+position = Vector2( 2, 0 )
+scale = Vector2( 10.92, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="piso"]
+scale = Vector2( 1.1, 1 )
+shape = SubResource( 1 )
+
+[node name="techo" type="StaticBody2D" parent="."]
+editor/display_folded = true
+visible = false
+position = Vector2( 1234.34, -86.2325 )
+scale = Vector2( 4.2, 1 )
+
+[node name="Sprite" type="Sprite" parent="techo"]
+position = Vector2( 2, 0 )
+scale = Vector2( 10.92, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="techo"]
+scale = Vector2( 1.1, 1 )
+shape = SubResource( 1 )
+
+[node name="plataforma" parent="." instance=ExtResource( 3 )]
+position = Vector2( 31.6541, 425.07 )
+
+[connection signal="body_exited" from="plataforma" to="plataforma" method="_on_plataforma_body_exited"]
