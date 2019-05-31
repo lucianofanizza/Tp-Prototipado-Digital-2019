@@ -1,8 +1,13 @@
 extends KinematicBody2D
 
-var dir = 0
-var speed = 500
+var horizontal = 0
+var vertical = 0
+var speed = 1500
 
-func _process(delta):
-	var move = move_and_collide(Vector2(0,dir*speed*delta))
+func iniciar(h, v):
+	horizontal = h
+	vertical = v
+
+func _physics_process(delta):
+	var move = move_and_slide(Vector2(horizontal * speed, vertical * speed))
 	pass

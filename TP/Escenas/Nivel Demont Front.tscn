@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Escenas/Demon Front.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Escenas/pasar a Metal Slug.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 317.938, 33.33 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 29.375, 30.9969 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 30.5407, 31.1168 )
 
 [node name="Nivel Demon Front" type="Node"]
 
@@ -36,28 +43,87 @@ texture = ExtResource( 2 )
 scale = Vector2( 1.1, 1 )
 shape = SubResource( 1 )
 
-[node name="techo" type="StaticBody2D" parent="."]
-editor/display_folded = true
-visible = false
-position = Vector2( 1234.34, -86.2325 )
-scale = Vector2( 4.2, 1 )
+[node name="controles" type="Label" parent="."]
+margin_left = 37.532
+margin_top = 9.5186
+margin_right = 264.532
+margin_bottom = 216.519
+text = "Demont Front
 
-[node name="Sprite" type="Sprite" parent="techo"]
-position = Vector2( 2, 0 )
-scale = Vector2( 10.92, 1 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="techo"]
-scale = Vector2( 1.1, 1 )
-shape = SubResource( 1 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = 212.0
-margin_top = 190.0
-margin_right = 439.0
-margin_bottom = 397.0
-text = "Movimiento = w,s,a,d
+Movimiento = w,s,a,d
 
 Disparar = j
 
 Saltar = k"
+
+[node name="analisis" type="Label" parent="."]
+margin_left = 37.2924
+margin_top = 146.694
+margin_right = 548.292
+margin_bottom = 353.694
+text = "Movimientos, saltos, y gravedad manejan valores mas altos, 
+los disparos van en la direccion apuntada.
+La camara sigue al jugador, a partir de la mitad de la pantalla, la escena avanza.
+Tambien sigue al jugador si llega a lo alto de la escena y vuelve a su posicion si 
+el personaje cae al suelo. El personaje puede salirse de los limites de la camara 
+pero la camara ya no lo siguira.
+"
+
+[node name="flecha" type="Label" parent="."]
+margin_left = 1032.0
+margin_top = 229.0
+margin_right = 1165.0
+margin_bottom = 269.0
+text = "Pasar a Metal Slug
+          >>>>>"
+
+[node name="plataforma 1" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 421.308, 426.477 )
+scale = Vector2( 1, 0.16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma 1"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="plataforma 1"]
+modulate = Color( 0.87451, 0, 1, 1 )
+texture = ExtResource( 2 )
+
+[node name="plataforma 2" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 557.005, 301.119 )
+scale = Vector2( 1, 0.16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma 2"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="plataforma 2"]
+modulate = Color( 0.87451, 0, 1, 1 )
+texture = ExtResource( 2 )
+
+[node name="plataforma 3" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 681.071, 211.946 )
+scale = Vector2( 1, 0.16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma 3"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="plataforma 3"]
+modulate = Color( 0.87451, 0, 1, 1 )
+texture = ExtResource( 2 )
+
+[node name="pasar a Metal Slug" type="Area2D" parent="."]
+position = Vector2( 1287.19, 365.737 )
+scale = Vector2( 2.30113, 5.57391 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="pasar a Metal Slug"]
+self_modulate = Color( 1, 0.898039, 0.235294, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pasar a Metal Slug"]
+scale = Vector2( 1, 1.04306 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="pasar a Metal Slug" to="Demon Front" method="_on_pasar_a_Metal_Slug_body_entered"]

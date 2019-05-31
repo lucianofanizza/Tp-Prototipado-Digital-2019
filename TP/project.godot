@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Tp Prototipado Digital"
+run/main_scene="res://Escenas/Nivel Demont Front.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -61,5 +62,4 @@ ui_jump={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

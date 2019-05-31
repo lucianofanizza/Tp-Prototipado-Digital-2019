@@ -2,6 +2,7 @@ extends KinematicBody2D
 var velocity = Vector2()
 var vector_normal = Vector2(0,-1)
 
+
 func get_input():
     if Input.is_action_pressed("ui_right"):
         velocity.x += 10
@@ -20,9 +21,12 @@ func _physics_process(delta):
 	velocity.y += 30
 	if is_on_floor():
 		velocity.y = 1
-	if Input.is_action_pressed("ui_jump") and is_on_floor():
+	if Input.is_action_just_pressed("ui_jump") and is_on_floor():
 		velocity.y = -750
 	move_and_slide(velocity, vector_normal)
-	
-	
-    
+
+
+func _on_pasar_a_Demon_Front_body_entered(body):
+	if (body.name == "Metal Slug"):
+		get_tree().change_scene("res://Escenas/Nivel Demont Front.tscn")
+	pass # Replace with function body.
